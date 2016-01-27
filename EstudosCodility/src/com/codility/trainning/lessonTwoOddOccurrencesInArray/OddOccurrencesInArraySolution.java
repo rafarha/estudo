@@ -34,11 +34,25 @@ import java.util.Arrays;
 public class OddOccurrencesInArraySolution {
     public int solution(int[] A) {
 	Arrays.sort(A);
-	int percorreArray = 0;
 	int resultado = 0;
+	int anterior = 0;
+	int atual = 0;
+	int proximo = 0;
 	for (int i = 0; i < A.length; i++) {
+	    atual = A[i];
+	    if (i > 0) {
+		anterior = A[i - 1];
+	    }
+	    if (i < (A.length) - 1) {
+		proximo = A[i + 1];
+	    } else {
+		proximo = 0;
+	    }
+	    if ((atual != anterior) && (atual != proximo)) {
+		resultado = atual;
+		break;
+	    }
 	}
-	Arrays.asList(A);
 	return resultado;
     }
 }
