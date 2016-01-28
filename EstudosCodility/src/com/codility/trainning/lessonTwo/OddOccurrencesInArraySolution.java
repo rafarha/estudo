@@ -1,4 +1,4 @@
-package com.codility.trainning.lessonTwoOddOccurrencesInArray;
+package com.codility.trainning.lessonTwo;
 
 import java.util.Arrays;
 
