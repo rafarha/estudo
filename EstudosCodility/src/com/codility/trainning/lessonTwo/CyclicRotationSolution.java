@@ -1,5 +1,8 @@
 package com.codility.trainning.lessonTwo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by rafael.alves on 28/01/2016.
  * A zero-indexed array A consisting of N integers is given. Rotation of the array means that each element is
@@ -16,4 +19,14 @@ package com.codility.trainning.lessonTwo;
  * In your solution, focus on correctness. The performance of your solution will not be the focus of the assessment.
  */
 public class CyclicRotationSolution {
+
+    public int solution(int[] A, int k) {
+	List<Integer> listaDeValores = new ArrayList<Integer>();
+	int posicaoAdd = k;
+	for (int i = (A.length) - 1; i >= 0; i--) {
+	    listaDeValores.add(posicaoAdd, A[i]);
+	}
+
+	return 0;
+    }
 }
