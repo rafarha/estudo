@@ -1,8 +1,5 @@
 package com.codility.trainning.lessonTwo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by rafael.alves on 28/01/2016.
  * A zero-indexed array A consisting of N integers is given. Rotation of the array means that each element is
@@ -20,13 +17,23 @@ import java.util.List;
  */
 public class CyclicRotationSolution {
 
-    public int solution(int[] A, int k) {
-	List<Integer> listaDeValores = new ArrayList<Integer>();
+    public int[] solution(int[] A, int k) {
+	int[] arrayIdexado = new int[A.length];
 	int posicaoAdd = k;
-	for (int i = (A.length) - 1; i >= 0; i--) {
-	    listaDeValores.add(posicaoAdd, A[i]);
+	while (posicaoAdd > 0) {
+	    for (int i = 0; i < A.length; i++) {
+		if (i + 1 < A.length) {
+		    arrayIdexado[i + 1] = A[i];
+		} else {
+		    arrayIdexado[0] = A[i];
+		}
+	    }
+	    for (int i = 0; i < arrayIdexado.length; i++) {
+		A[i] = arrayIdexado[i];
+	    }
+	    //A = ArrayUtils.clone(arrayIdexado);
+	    posicaoAdd--;
 	}
-
-	return 0;
+	return arrayIdexado;
     }
 }
