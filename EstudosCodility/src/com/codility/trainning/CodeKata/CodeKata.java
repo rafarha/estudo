@@ -26,5 +26,6 @@ public class CodeKata extends PosicaoTO implements IEncontrarSequencia {
             }
         }
         return pto;
+        //teste
     }
 }
