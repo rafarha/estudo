@@ -9,7 +9,11 @@ import org.junit.Test;
 public class CodeKataTest extends TestCase {
     @Test
     public void testeBasico() {
-	CodeKata ck = new CodeKata();
-	ck.encontrar("BYX", "ABCFBYXELMBYX");
+        PosicaoTO pTO = new PosicaoTO();
+        pTO.addPosicaoDireta(4);
+        pTO.addPosicaoDireta(10);
+        CodeKata ck = new CodeKata();
+        //teste
+        assertEquals(pTO.getListaPosicoesDireta(), ck.encontrar("BYX", "ABCFBYXELMBYXYYYYYYYJKJGDKGSHGDHGDHSGDHSGDHSGDHJSGHJDGSHJGDHJDSGHJBYJX").getListaPosicoesDireta());
     }
 }

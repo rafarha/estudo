@@ -5,25 +5,27 @@ package com.codility.trainning.CodeKata;
  */
 public class CodeKata extends PosicaoTO implements IEncontrarSequencia {
     public PosicaoTO encontrar(final String p, final String t) {
-	PosicaoTO pto = new PosicaoTO();
-	char[] cadeiaPequena = p.toCharArray();
-	char[] cadeiaPrincipal = t.toCharArray();
-	int j = 0;
-	int guardarPosicao = 0;
-	for (int i = 0; i < cadeiaPrincipal.length; i++) {
-	    if (cadeiaPequena[j] == cadeiaPrincipal[i]) {
-		if (j == 0) {
-		    guardarPosicao = i;
-		    j++;
-		} else {
-		    j++;
-		    i--;
-		}
-	    } else {
-		guardarPosicao = 0;
-		j = 0;
-	    }
-	}
-	return pto;
+        PosicaoTO pto = new PosicaoTO();
+        char[] cadeiaPequena = p.toCharArray();
+        char[] cadeiaPrincipal = t.toCharArray();
+        int guardarPosicao = 0;
+        for (int i = 0; i < cadeiaPrincipal.length; i++) {
+                if (cadeiaPequena[0] == cadeiaPrincipal[i]) {
+                guardarPosicao = i;
+                for (int j = 1; j < cadeiaPequena.length; j++) {
+                    if (cadeiaPequena[j] == cadeiaPrincipal[i + j]) {
+                        if ((j+1) == cadeiaPequena.length) {
+                            pto.addPosicaoDireta(guardarPosicao);
+                        }
+                        continue;
+                    } else {
+                        guardarPosicao = 0;
+                        break;
+                    }
+                }
+            }
+        }
+        return pto;
+        //teste
     }
 }
