@@ -1,5 +1,9 @@
 package com.codility.trainning.LessonThree;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by rafael.alves on 03/02/2016.
  * A non-empty zero-indexed array A consisting of N integers is given. Array A represents numbers on a tape.
@@ -38,6 +42,34 @@ package com.codility.trainning.LessonThree;
 public class TapeEquilibrium {
 
     public int solution(int[] A) {
-	return 0;
+	Map<String, Integer> mapaPartes = new HashMap<String, Integer>();
+	Map<String, Integer> mapaSobra = new HashMap<String, Integer>();
+	Map<String, Integer> mapaDiferenca = new HashMap<String, Integer>();
+	for (int i = 0; i < A.length; i++) {
+	    int numeroPartes = (A.length - 1);
+	    int aux = i;
+	    int valorSobra = 0;
+	    int valorParte = 0;
+	    //Alimentando as partes
+	    while (aux >= 0 && aux < A.length - 1) {
+		valorParte = valorParte + A[aux];
+		mapaPartes.put("P" + i, valorParte);
+		aux--;
+	    }
+	    //Alimentando a sobra das partes
+	    while (numeroPartes > i) {
+		valorSobra = valorSobra + A[numeroPartes];
+		mapaSobra.put("S" + i, valorSobra);
+		numeroPartes--;
+	    }
+	    try {
+		mapaDiferenca.put("DIF" + i, (mapaSobra.get("S" + i) - mapaPartes.get("P" + i)) < 0 ?
+				(mapaSobra.get("S" + i) - mapaPartes.get("P" + i)) * -1 :
+				(mapaSobra.get("S" + i) - mapaPartes.get("P" + i)));
+	    } catch (NullPointerException ex) {
+		ex.getMessage();
+	    }
+	}
+	return Collections.min(mapaDiferenca.values());
     }
 }
