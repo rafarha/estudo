@@ -1,8 +1,6 @@
 package com.codility.trainning.LessonThree;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by rafael.alves on 03/02/2016.
@@ -72,4 +70,42 @@ public class TapeEquilibrium {
 	}
 	return Collections.min(mapaDiferenca.values());
     }
+
+    public int solution2(int[] A) {
+	List<Integer> mapaEsquerda = new ArrayList<Integer>(A.length);
+	List<Integer> mapaDireita = new ArrayList<Integer>(A.length);
+	int esquerda = 1;
+	int direita = A.length - 1;
+	mapaEsquerda.add(A[0]);
+	mapaDireita.add(A[direita]);
+	direita = direita - 1;
+	while (esquerda < A.length - 1) {
+	    try {
+
+		mapaEsquerda.add(Integer.parseInt(mapaEsquerda.get(esquerda - 1).toString()) + A[esquerda]);
+		mapaDireita.add(A[direita] + Integer.parseInt(mapaDireita.get(esquerda - 1).toString()));
+	    } catch (IndexOutOfBoundsException ex) {
+		ex.getStackTrace();
+
+	    }
+	    esquerda++;
+	    direita--;
+	}
+	int auxEsquerda = 0;
+	int auxDireita = mapaDireita.size() - 1;
+	int resultado = Integer.MAX_VALUE;
+	int dif = 0;
+	while (auxEsquerda < mapaDireita.size()) {
+	    dif = mapaDireita.get(auxDireita) - mapaEsquerda.get(auxEsquerda);
+	    dif = dif < 0 ? dif * -1 : dif;
+	    resultado = dif < resultado ? dif : resultado;
+	    if (resultado == 0) {
+		break;
+	    }
+	    auxEsquerda++;
+	    auxDireita--;
+	}
+	return resultado;
+    }
+
 }
