@@ -47,4 +47,8 @@ public class QuantidadeNotaTO {
 	return notas50;
     }
 
+    @Override public String toString() {
+	return notas2 + "," + notas5 + "," + notas10 + "," + notas20 + "," + notas50;
+    }
+
 }

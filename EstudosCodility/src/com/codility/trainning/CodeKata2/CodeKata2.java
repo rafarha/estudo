@@ -71,7 +71,7 @@ public class CodeKata2 implements ICaixaEletronicoService {
 	    }
 	}
 	if (restoDivisao.doubleValue() >= 2) {
-	    vetRetorno = restoDivisao.divideAndRemainder(new BigDecimal(2));
+ 	    vetRetorno = restoDivisao.divideAndRemainder(new BigDecimal(2));
 	    valorDividido = vetRetorno[0];
 	    if (valorDividido.intValue() <= numerNotaTO.getNotas2()) {
 		restoDivisao = vetRetorno[1];
