@@ -10,6 +10,15 @@ import java.math.BigDecimal;
  */
 public class CodeKataTest {
 
+    @Test
+    public void testeDarian() throws ImpossivelSacarException {
+	CodeKata2 cK2 = new CodeKata2();
+	QuantidadeNotaTO qtdNotas = new QuantidadeNotaTO(3, 2, 0, 0, 0);
+	cK2.contarNotas(qtdNotas);
+	QuantidadeNotaTO resultado = cK2.sacar(BigDecimal.valueOf(11));
+	Assert.assertEquals("3,1,0,0,0", resultado.toString());
+    }
+
     @Test(expected = ImpossivelSacarException.class)
     public void testeExcecao() throws Exception {
 	CodeKata2 cK2 = new CodeKata2();
