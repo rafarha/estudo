@@ -21,6 +21,16 @@ public class CodeKata2 implements ICaixaEletronicoService {
 	this.numerNotaTO = pQuantidadeNotas;
     }
 
+    public boolean possoProcessarNotasCinco(BigDecimal restoDivisao) {
+	boolean ehPermitidoNotasCinco;
+	if (restoDivisao.intValue() % 5 == 0) {
+	    ehPermitidoNotasCinco = true;
+	} else {
+	    ehPermitidoNotasCinco = false;
+	}
+	return ehPermitidoNotasCinco;
+    }
+
     public QuantidadeNotaTO sacar(BigDecimal pValor) throws ImpossivelSacarException {
 	BigDecimal restoDivisao = pValor;
 	BigDecimal valorDividido = new BigDecimal(0);
@@ -30,54 +40,60 @@ public class CodeKata2 implements ICaixaEletronicoService {
 	int notasDez = 0;
 	int notasCinco = 0;
 	int notasDois = 0;
-	if (restoDivisao.doubleValue() >= 50) {
+	if (restoDivisao.intValue() >= 50) {
 	    vetRetorno = restoDivisao.divideAndRemainder(new BigDecimal(50));
 	    valorDividido = vetRetorno[0];
 	    if (valorDividido.intValue() <= numerNotaTO.getNotas50()) {
 		restoDivisao = vetRetorno[1];
 		notasCinquenta = notasCinquenta + valorDividido.intValue();
 	    } else {
-		restoDivisao.subtract(BigDecimal.valueOf((50 * numerNotaTO.getNotas50())));
+		restoDivisao = BigDecimal.valueOf((restoDivisao.intValue() - (50 * numerNotaTO.getNotas50())));
+		notasCinquenta = numerNotaTO.getNotas50();
 	    }
 	}
-	if (restoDivisao.doubleValue() >= 20) {
+	if (restoDivisao.intValue() >= 20) {
 	    vetRetorno = restoDivisao.divideAndRemainder(new BigDecimal(20));
 	    valorDividido = vetRetorno[0];
 	    if (valorDividido.intValue() <= numerNotaTO.getNotas20()) {
 		restoDivisao = vetRetorno[1];
 		notasVinte = notasCinquenta + valorDividido.intValue();
 	    } else {
-		restoDivisao.subtract(BigDecimal.valueOf((20 * numerNotaTO.getNotas20())));
+		restoDivisao = BigDecimal.valueOf((restoDivisao.intValue() - (20 * numerNotaTO.getNotas20())));
+		notasVinte = numerNotaTO.getNotas20();
 	    }
 	}
-	if (restoDivisao.doubleValue() >= 10) {
+	if (restoDivisao.intValue() >= 10) {
 	    vetRetorno = restoDivisao.divideAndRemainder(new BigDecimal(10));
 	    valorDividido = vetRetorno[0];
 	    if (valorDividido.intValue() <= numerNotaTO.getNotas10()) {
 		restoDivisao = vetRetorno[1];
 		notasDez = notasDez + valorDividido.intValue();
 	    } else {
-		restoDivisao.subtract(BigDecimal.valueOf((10 * numerNotaTO.getNotas10())));
+		restoDivisao = BigDecimal.valueOf((restoDivisao.intValue() - (10 * numerNotaTO.getNotas10())));
+		notasDez = numerNotaTO.getNotas10();
 	    }
 	}
-	if (restoDivisao.doubleValue() >= 5) {
+	boolean ehPermitidoNotasCinco = possoProcessarNotasCinco(restoDivisao);
+	if (restoDivisao.intValue() >= 5 && ehPermitidoNotasCinco) {
 	    vetRetorno = restoDivisao.divideAndRemainder(new BigDecimal(5));
 	    valorDividido = vetRetorno[0];
 	    if (valorDividido.intValue() <= numerNotaTO.getNotas5()) {
 		restoDivisao = vetRetorno[1];
 		notasCinco = notasCinco + valorDividido.intValue();
 	    } else {
-		restoDivisao.subtract(BigDecimal.valueOf((5 * numerNotaTO.getNotas5())));
+		restoDivisao = BigDecimal.valueOf((restoDivisao.intValue() - (5 * numerNotaTO.getNotas5())));
+		notasCinco = numerNotaTO.getNotas5();
 	    }
 	}
-	if (restoDivisao.doubleValue() >= 2) {
- 	    vetRetorno = restoDivisao.divideAndRemainder(new BigDecimal(2));
+	if (restoDivisao.intValue() >= 2) {
+	    vetRetorno = restoDivisao.divideAndRemainder(new BigDecimal(2));
 	    valorDividido = vetRetorno[0];
 	    if (valorDividido.intValue() <= numerNotaTO.getNotas2()) {
 		restoDivisao = vetRetorno[1];
 		notasDois = notasDois + valorDividido.intValue();
 	    } else {
-		restoDivisao.subtract(BigDecimal.valueOf((2 * numerNotaTO.getNotas2())));
+		restoDivisao = BigDecimal.valueOf((restoDivisao.intValue() - (2 * numerNotaTO.getNotas2())));
+		notasDois = numerNotaTO.getNotas2();
 	    }
 	}
 	if (restoDivisao.intValue() != 0) {
@@ -87,5 +103,4 @@ public class CodeKata2 implements ICaixaEletronicoService {
 	QuantidadeNotaTO resultado = new QuantidadeNotaTO(notasDois, notasCinco, notasDez, notasVinte, notasCinquenta);
 	return resultado;
     }
-
 }

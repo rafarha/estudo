@@ -13,17 +13,26 @@ public class CodeKataTest {
     @Test(expected = ImpossivelSacarException.class)
     public void testeExcecao() throws Exception {
 	CodeKata2 cK2 = new CodeKata2();
-	QuantidadeNotaTO qtdNotas = new QuantidadeNotaTO(10, 10, 10, 10, 0);
+	QuantidadeNotaTO qtdNotas = new QuantidadeNotaTO(0, 0, 0, 0, 50);
 	cK2.contarNotas(qtdNotas);
-	cK2.sacar(BigDecimal.ONE);
+	cK2.sacar(BigDecimal.TEN);
     }
 
     @Test
-    public void testePrimeiro() throws ImpossivelSacarException {
+    public void testeMaximo() throws ImpossivelSacarException {
 	CodeKata2 cK2 = new CodeKata2();
-	QuantidadeNotaTO qtdNotas = new QuantidadeNotaTO(10, 10, 10, 10, 0);
+	QuantidadeNotaTO qtdNotas = new QuantidadeNotaTO(750, 100, 100, 100, 100);
 	cK2.contarNotas(qtdNotas);
-	QuantidadeNotaTO resultado = cK2.sacar(BigDecimal.valueOf(1));
-	Assert.assertEquals("1,0,1,2,0", resultado.toString());
+	QuantidadeNotaTO resultado = cK2.sacar(BigDecimal.valueOf(10000));
+	Assert.assertEquals("750,100,100,100,100", resultado.toString());
+    }
+
+    @Test
+    public void testeNotaImpar() throws ImpossivelSacarException {
+	CodeKata2 cK2 = new CodeKata2();
+	QuantidadeNotaTO qtdNotas = new QuantidadeNotaTO(3, 1, 0, 0, 0);
+	cK2.contarNotas(qtdNotas);
+	QuantidadeNotaTO resultado = cK2.sacar(BigDecimal.valueOf(6));
+	Assert.assertEquals("3,0,0,0,0", resultado.toString());
     }
 }
