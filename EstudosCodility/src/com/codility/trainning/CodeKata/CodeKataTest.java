@@ -19,6 +19,8 @@ public class CodeKataTest extends TestCase {
 	pTOEsperado.addPosicaoReversa(57);
 	assertEquals(pTOEsperado.getListaPosicoesDireta(), pTO.getListaPosicoesDireta());
 	assertEquals(pTOEsperado.getListaPosicoesReversa(), pTO.getListaPosicoesReversa());
+	System.out.println(pTO.listaPosicoesDireta);
+
     }
 
     @Test
