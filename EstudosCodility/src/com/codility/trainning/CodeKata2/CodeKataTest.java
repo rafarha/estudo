@@ -19,6 +19,15 @@ public class CodeKataTest {
 	Assert.assertEquals("3,1,0,0,0", resultado.toString());
     }
 
+    @Test
+    public void testeEder() throws ImpossivelSacarException {
+	CodeKata2 cK2 = new CodeKata2();
+	QuantidadeNotaTO qtdNotas = new QuantidadeNotaTO(10, 10, 10, 10, 10);
+	cK2.contarNotas(qtdNotas);
+	QuantidadeNotaTO resultado = cK2.sacar(BigDecimal.valueOf(13));
+	Assert.assertEquals("4,1,0,0,0", resultado.toString());
+    }
+
     @Test(expected = ImpossivelSacarException.class)
     public void testeExcecao() throws Exception {
 	CodeKata2 cK2 = new CodeKata2();
@@ -34,6 +43,15 @@ public class CodeKataTest {
 	cK2.contarNotas(qtdNotas);
 	QuantidadeNotaTO resultado = cK2.sacar(BigDecimal.valueOf(10000));
 	Assert.assertEquals("750,100,100,100,100", resultado.toString());
+    }
+
+    @Test
+    public void testeNaoUsarCinquenta() throws ImpossivelSacarException {
+	CodeKata2 cK2 = new CodeKata2();
+	QuantidadeNotaTO qtdNotas = new QuantidadeNotaTO(0, 0, 0, 6, 1);
+	cK2.contarNotas(qtdNotas);
+	QuantidadeNotaTO resultado = cK2.sacar(BigDecimal.valueOf(120));
+	Assert.assertEquals("0,0,0,6,0", resultado.toString());
     }
 
     @Test
