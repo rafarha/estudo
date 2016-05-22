@@ -8,3 +8,9 @@
 |7|M. Souza|autores001|1|ok|
 |8|Z. Silva|autores002|1|ok|
 |9|Z. Souza|autores002|-1|ok|
+|10|J. Lombardi|autores003|-1|ok|
+|11|J. Moraes|autores003|5|ok|
+|12|K. Moraes|autores003|-1|ok|
+|13|T. Arnaldo|autores003|2|ok|
+|14|T. Arnaldo|autores004|2|erro|
+|15|T. Arnaldosdjanjkdsjakndjksandsjandjksandjsandkjsandjksandsajkndsa|autores004|2|erro|
