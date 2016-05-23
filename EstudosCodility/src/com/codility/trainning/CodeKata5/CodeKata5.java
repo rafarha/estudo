@@ -10,6 +10,10 @@ import java.util.List;
 public class CodeKata5 implements INumeroErdosService {
     @Override public Integer descobrirNumeroErdosDoAutor(final String pNomeAutor, final List<String> pAutoresArtigos)
 		    throws IllegalArgumentException {
+	if (!pAutoresArtigos.toString().contains(pNomeAutor)) {
+	    throw new IllegalArgumentException(
+			    "Nome de Autor não existe na lista de artigos.");
+	}
 	if (pAutoresArtigos.size() >= 100 || pNomeAutor.length() >= 15) {
 	    throw new IllegalArgumentException(
 			    "Não é permitido lista de artigo maior que 100 ou nome procurado com mais de 15 caracteres");
@@ -45,6 +49,11 @@ public class CodeKata5 implements INumeroErdosService {
 
     private void adicionarLinhasErdos(String linhaListaPrincipal, HashMap<String, Integer> pNovaListaAutores) {
 	String[] listaDaLinha = linhaListaPrincipal.split("\\,");
+	if (listaDaLinha.length > 10) {
+	    throw new IllegalArgumentException(
+			    "Número de Autor por Artigo é maior que permitido.");
+
+	}
 	Integer aux = 0;
 	while (aux < listaDaLinha.length) {
 	    if (listaDaLinha[aux].toString().equals("P. Erdos")) {
@@ -59,6 +68,11 @@ public class CodeKata5 implements INumeroErdosService {
 
     private boolean adicionarRelacoesIndiretasComErdos(String linhaListaPrincipal, HashMap<String, Integer> pNovaListaAutores) {
 	String[] listaDaLinha = linhaListaPrincipal.split("\\,");
+	if (listaDaLinha.length > 10) {
+	    throw new IllegalArgumentException(
+			    "Número de Autor por Artigo é maior que permitido.");
+
+	}
 	boolean realacaoIndiretaErdos = false;
 	Integer aux = 0;
 	Integer numeroErdos = 0;
@@ -79,6 +93,4 @@ public class CodeKata5 implements INumeroErdosService {
 	}
 	return realacaoIndiretaErdos;
     }
-
-    //Escrever um método para validar se todos os artigos possuem somente 10 autores.
 }

@@ -1,4 +1,5 @@
 |cenario|nomeAutor|arquivoListaArtigos|retorno|ok|
+|18|P. Rafael|autores006|-1|erro|
 |1|A. Oliveira|autores001|2|ok|
 |2|P. Duarte|autores001|3|ok|
 |3|J. Ninguem|autores001|-1|ok|
@@ -14,3 +15,6 @@
 |13|T. Arnaldo|autores003|2|ok|
 |14|T. Arnaldo|autores004|2|erro|
 |15|T. Arnaldosdjanjkdsjakndjksandsjandjksandjsandkjsandjksandsajkndsa|autores004|2|erro|
+|16|J. Lombardi|autores005|-1|ok|
+|17|Teste|autores005|-1|erro|
+|18|Teste|autores006|-1|erro|
